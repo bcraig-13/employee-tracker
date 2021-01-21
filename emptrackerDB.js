@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
 connection.connect(function (err) {
   if (err) throw err;
   console.log(
-    ">=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<\n>=<=> WELCOME TO EMPLOEE TRACKER <=>=<\n>=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<"
+    ">=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<\n>=<=> WELCOME TO EMPLOYEE TRACKER <=>=<\n>=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<"
   );
   start();
 });
@@ -130,11 +130,14 @@ function viewDepartment() {
   ]).then((answer) => {
     switch(answer.choice) {
       case "Manager":
-        //===Display all Managers
+        console.table("SELECT * FROM department WHERE name=Manager"); //===Not sure if this will work
+        viewDepartment();
       case "Engineering":
-        //===Display all engineering
+        console.table("SELECT * FROM department WHERE name=Engineering");
+        viewDepartment();
       case "Administrative":
-        //===Display all admins
+        console.table("SELECT * FROM department WHERE name=Administrative");
+        viewDepartment();
       default:
         return start();
     }
