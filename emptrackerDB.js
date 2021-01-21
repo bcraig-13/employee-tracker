@@ -14,6 +14,7 @@ connection.connect(function (err) {
   );
   start();
 });
+
 function start() {
   inquirer
     .prompt([
@@ -34,18 +35,21 @@ function start() {
         case "ADD employee":
           add();
           break;
+
         case "VIEW departments, roles, and employees":
           view();
           break;
         case "UPDATE employee roles":
           update();
           break;
+
         default:
           console.log("^_^ BYE BYE ^_^");
           return connection.end();
       }
     });
 }
+
 function add() {
   inquirer
     .prompt([
@@ -101,18 +105,22 @@ function view() {
         case "View departments":
           viewDepartment();
           break;
+
         case "View roles":
           viewRoles();
           break;
+
         case "View all employees":
           viewAllEmps();
           break;
+
         default:
           start();
           break;
       }
     });
 }
+
 function viewDepartment() {
   inquirer
     .prompt([
@@ -148,6 +156,7 @@ function viewDepartment() {
       }
     });
 }
+
 function viewRoles() {
   inquirer
     .prompt([
@@ -171,29 +180,38 @@ function viewRoles() {
         case "Manager":
           //Display all managers--copy from viewDepartment()
           console.table("SELECT * FROM role WHERE title=Manager"); //<==This should display the whole table?
+
         case "Project Lead":
         //Display all project leads
+
         case "Front End Engineer":
         //Display all front end eng
+
         case "Back End Engineer":
         //Display all back end eng
+
         case "Administrative Lead":
         //Display all admin leads
+
         case "Administrative Assistant":
         //Display all admin assist
+
         default:
           start();
           break;
       }
     });
 }
+
 function viewAllEmps() {
   //Display all emps from db
   //Have BACK option
 }
 //===Don't forget to add BACK which returns to previous menu
 //display all employees in each department
+
 //select roles from list
 //display all employees with selected role
+
 //return to main menu
 //create update()
