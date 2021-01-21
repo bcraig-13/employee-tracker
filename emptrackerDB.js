@@ -13,7 +13,7 @@ connection.connect(function (err) {
 });
 
 function start() {
-  console.log(">=<=> WELCOME TO EMPLOEE TRACKER <=>=<");
+  console.log(">=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<\n>=<=> WELCOME TO EMPLOEE TRACKER <=>=<\n>=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<");
   inquirer
     .prompt([
       {
@@ -48,10 +48,10 @@ function start() {
 
 //create add()
     //add department
-        //enter department name
+        //select from existing department list
     //add role
-        //enter title
-        //enter salary
+        //select title from existing lisy
+        //enter salary number with decimal
         //?include dapartment id?
     //add emp
         //enter first name
@@ -60,8 +60,14 @@ function start() {
 
 //create view()
     //view department
+        //select department from list
+        //display all employees in each department
+        //return to main menu
     //view roles
+        //select roles from list
+        //display all employees with selected role
+        //return to main menu
     //view employees
-
+        //view all employees
+        //return to main menu
 //create update()
-    
