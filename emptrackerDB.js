@@ -183,18 +183,23 @@ function viewRoles() {
 
         case "Project Lead":
         //Display all project leads
+        console.table("SELECT * FROM role WHERE title=Project Lead")
 
         case "Front End Engineer":
         //Display all front end eng
+        console.table("SELECT * FROM role WHERE title=Front End Engineer")
 
         case "Back End Engineer":
         //Display all back end eng
+        console.table("SELECT * FROM role WHERE title=Back End Engineer")
 
         case "Administrative Lead":
         //Display all admin leads
+        console.table("SELECT * FROM role WHERE title=Administrative Lead")
 
         case "Administrative Assistant":
         //Display all admin assist
+        console.table("SELECT * FROM role WHERE title=Administrative Assistant")
 
         default:
           start();
