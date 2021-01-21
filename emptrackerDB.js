@@ -75,23 +75,123 @@ function add() {
     },
     //===Don't need to enter department. The role will already have that===
   ]).then((answer) => {
-    console.log(answer);
+    // ===Need to add answer to database
     console.log(">=<=> EMPLOYEE ADDED <=>=<");
     start(); 
   })
 }
 //===CHECK ACT 12-13 FOR HELP===
+function view() {
+  inquirer.prompt([
+    {
+      type: "list",
+      name: "views",
+      choices: [
+        "View departments",
+        "View roles",
+        "View all emploees",
+        "BACK"
+      ],
+    }
+  ]).then((answer) => {
+    switch(answer.choice) {
+      case "View departments":
+        return viewDepartment();
 
-//create view()
-//view department
-//select department from list
+      case "View roles":
+        return viewRoles();
+
+      case "View all emploees":
+        return viewAllEmps();
+
+      default:
+        return start();
+    }
+  })
+}
+
+function viewDepartment() {
+  inquirer.prompt([
+    {
+      type: "list",
+      name: "views",
+      choices: [
+        "Manager",
+        //Contains manager
+        "Engineering",
+        //Contains project lead, front and back end
+        "Administrative",
+        //COntains admin lead and assist
+        "BACK"
+      ],
+    }
+  ]).then((answer) => {
+    switch(answer.choice) {
+      case "Manager":
+        //===Display all Managers
+      case "Engineering":
+        //===Display all engineering
+      case "Administrative":
+        //===Display all admins
+      default:
+        return start();
+    }
+  })
+}
+
+function viewRoles() {
+  inquirer.prompt([
+    {
+      type: "list",
+      name: "views",
+      choices: [
+        "Manager",
+        "Project Lead",
+        "Front End Engineer",
+        "Back End Engineer",
+        "Administrative Lead",
+        "Administrative Assistant",
+        "BACK"
+      ],
+    }
+  ]).then((answer) => {
+    switch(answer.choice) {
+      case "Manager":
+        //Display all managers--copy from viewDepartment()
+        console.table("SELECT * FROM role WHERE title=Manager"); //<==This should display the whole table?
+
+      case "Project Lead":
+        //Display all project leads
+
+      case "Front End Engineer":
+        //Display all front end eng
+      
+      case "Back End Engineer":
+        //Display all back end eng
+
+      case "Administrative Lead":
+        //Display all admin leads
+
+      case "Administrative Assistant":
+        //Display all admin assist
+
+      default:
+        return start();
+    }
+  })
+}
+
+function viewAllEmps() {
+  //Display all emps from db
+  //Have BACK option
+}
+//===Don't forget to add BACK which returns to previous menu
 //display all employees in each department
-//return to main menu
-//view roles
+
+
 //select roles from list
 //display all employees with selected role
-//return to main menu
-//view employees
-//view all employees
+
+
 //return to main menu
 //create update()
