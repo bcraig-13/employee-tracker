@@ -101,7 +101,7 @@ function view() {
       },
     ])
     .then((answer) => {
-      switch (answer.choice) {
+      switch (answer.views) {
         case "View departments":
           viewDepartment();
           break;
@@ -140,7 +140,7 @@ function viewDepartment() {
       },
     ])
     .then((answer) => {
-      switch (answer.choice) {
+      switch (answer.views) {
         case "Manager":
           console.table("SELECT * FROM department WHERE name=Manager"); //===Not sure if this will work
           viewDepartment();
@@ -176,7 +176,7 @@ function viewRoles() {
       },
     ])
     .then((answer) => {
-      switch (answer.choice) {
+      switch (answer.views) {
         case "Manager":
           //Display all managers--copy from viewDepartment()
           console.table("SELECT * FROM role WHERE title=Manager"); //<==This should display the whole table?
