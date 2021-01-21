@@ -26,20 +26,23 @@ function start() {
           "ADD employee",
           "VIEW departments, roles, and employees",
           "UPDATE employee roles",
-          "EXIT"
+          "EXIT",
         ],
       },
     ])
     .then((answer) => {
       switch (answer.choice) {
         case "ADD employee":
-          return add();
+          add();
+          break;
 
         case "VIEW departments, roles, and employees":
-          return view();
+          view();
+          break;
 
         case "UPDATE employee roles":
-          return update();
+          update();
+          break;
 
         default:
           console.log("^_^ BYE BYE ^_^");
@@ -49,142 +52,156 @@ function start() {
 }
 
 function add() {
-  inquirer.prompt([
-    {
-      type: "input",
-      name: "empFirstName",
-      message: "What is your employee's first name?"
-    },
-    {
-      type: "input",
-      name: "empLastName",
-      message: "What is your employee's last name?",
-    },
-    {
-      type: "list",
-      name: "choice",
-      message: "What role does this employee have?",
-      choices: [
-        "Manager",
-        "Project Lead",
-        "Front End Engineer",
-        "Back End Engineer",
-        "Administrative Lead",
-        "Administrative Assistant"
-      ],
-    },
-    //===Don't need to enter department. The role will already have that===
-  ]).then((answer) => {
-    // ===Need to add answer to database
-    console.log(">=<=> EMPLOYEE ADDED <=>=<");
-    start(); 
-  })
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "empFirstName",
+        message: "What is your employee's first name?",
+      },
+      {
+        type: "input",
+        name: "empLastName",
+        message: "What is your employee's last name?",
+      },
+      {
+        type: "list",
+        name: "choice",
+        message: "What role does this employee have?",
+        choices: [
+          "Manager",
+          "Project Lead",
+          "Front End Engineer",
+          "Back End Engineer",
+          "Administrative Lead",
+          "Administrative Assistant",
+        ],
+      },
+      //===Don't need to enter department. The role will already have that===
+    ])
+    .then((answer) => {
+      // ===Need to add answer to database
+      console.log(">=<=> EMPLOYEE ADDED <=>=<");
+      start();
+    });
 }
 //===CHECK ACT 12-13 FOR HELP===
 function view() {
-  inquirer.prompt([
-    {
-      type: "list",
-      name: "views",
-      message: "What would you like to view?",
-      choices: [
-        "View departments",
-        "View roles",
-        "View all emploees",
-        "BACK"
-      ],
-    }
-  ]).then((answer) => {
-    switch(answer.choice) {
-      case "View departments":
-        return viewDepartment();
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "views",
+        message: "What would you like to view?",
+        choices: [
+          "View departments",
+          "View roles",
+          "View all employees",
+          "BACK",
+        ],
+      },
+    ])
+    .then((answer) => {
+      switch (answer.choice) {
+        case "View departments":
+          viewDepartment();
+          break;
 
-      case "View roles":
-        return viewRoles();
+        case "View roles":
+          viewRoles();
+          break;
 
-      case "View all emploees":
-        return viewAllEmps();
+        case "View all employees":
+          viewAllEmps();
+          break;
 
-      default:
-        return start();
-    }
-  })
+        default:
+          start();
+          break;
+      }
+    });
 }
 
 function viewDepartment() {
-  inquirer.prompt([
-    {
-      type: "list",
-      name: "views",
-      message: "Which department would you like to view?",
-      choices: [
-        "Manager",
-        //Contains manager
-        "Engineering",
-        //Contains project lead, front and back end
-        "Administrative",
-        //COntains admin lead and assist
-        "BACK"
-      ],
-    }
-  ]).then((answer) => {
-    switch(answer.choice) {
-      case "Manager":
-        console.table("SELECT * FROM department WHERE name=Manager"); //===Not sure if this will work
-        viewDepartment();
-      case "Engineering":
-        console.table("SELECT * FROM department WHERE name=Engineering");
-        viewDepartment();
-      case "Administrative":
-        console.table("SELECT * FROM department WHERE name=Administrative");
-        viewDepartment();
-      default:
-        return start();
-    }
-  })
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "views",
+        message: "Which department would you like to view?",
+        choices: [
+          "Manager",
+          //Contains manager
+          "Engineering",
+          //Contains project lead, front and back end
+          "Administrative",
+          //COntains admin lead and assist
+          "BACK",
+        ],
+      },
+    ])
+    .then((answer) => {
+      switch (answer.choice) {
+        case "Manager":
+          console.table("SELECT * FROM department WHERE name=Manager"); //===Not sure if this will work
+          viewDepartment();
+        case "Engineering":
+          console.table("SELECT * FROM department WHERE name=Engineering");
+          viewDepartment();
+        case "Administrative":
+          console.table("SELECT * FROM department WHERE name=Administrative");
+          viewDepartment();
+        default:
+          start();
+          break;
+      }
+    });
 }
 
 function viewRoles() {
-  inquirer.prompt([
-    {
-      type: "list",
-      name: "views",
-      message: "Which role would you like to view?",
-      choices: [
-        "Manager",
-        "Project Lead",
-        "Front End Engineer",
-        "Back End Engineer",
-        "Administrative Lead",
-        "Administrative Assistant",
-        "BACK"
-      ],
-    }
-  ]).then((answer) => {
-    switch(answer.choice) {
-      case "Manager":
-        //Display all managers--copy from viewDepartment()
-        console.table("SELECT * FROM role WHERE title=Manager"); //<==This should display the whole table?
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "views",
+        message: "Which role would you like to view?",
+        choices: [
+          "Manager",
+          "Project Lead",
+          "Front End Engineer",
+          "Back End Engineer",
+          "Administrative Lead",
+          "Administrative Assistant",
+          "BACK",
+        ],
+      },
+    ])
+    .then((answer) => {
+      switch (answer.choice) {
+        case "Manager":
+          //Display all managers--copy from viewDepartment()
+          console.table("SELECT * FROM role WHERE title=Manager"); //<==This should display the whole table?
 
-      case "Project Lead":
+        case "Project Lead":
         //Display all project leads
 
-      case "Front End Engineer":
+        case "Front End Engineer":
         //Display all front end eng
-      
-      case "Back End Engineer":
+
+        case "Back End Engineer":
         //Display all back end eng
 
-      case "Administrative Lead":
+        case "Administrative Lead":
         //Display all admin leads
 
-      case "Administrative Assistant":
+        case "Administrative Assistant":
         //Display all admin assist
 
-      default:
-        return start();
-    }
-  })
+        default:
+          start();
+          break;
+      }
+    });
 }
 
 function viewAllEmps() {
@@ -194,10 +211,8 @@ function viewAllEmps() {
 //===Don't forget to add BACK which returns to previous menu
 //display all employees in each department
 
-
 //select roles from list
 //display all employees with selected role
-
 
 //return to main menu
 //create update()
