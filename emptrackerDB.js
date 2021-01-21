@@ -46,6 +46,7 @@ function start() {
     });
 }
 
+//===CHECK ACT 12-13 FOR HELP===
 //create add()
     //add department
         //select from existing department list
