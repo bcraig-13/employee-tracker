@@ -86,6 +86,7 @@ function view() {
     {
       type: "list",
       name: "views",
+      message: "What would you like to view?",
       choices: [
         "View departments",
         "View roles",
@@ -115,6 +116,7 @@ function viewDepartment() {
     {
       type: "list",
       name: "views",
+      message: "Which department would you like to view?",
       choices: [
         "Manager",
         //Contains manager
@@ -144,6 +146,7 @@ function viewRoles() {
     {
       type: "list",
       name: "views",
+      message: "Which role would you like to view?",
       choices: [
         "Manager",
         "Project Lead",
