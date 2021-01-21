@@ -9,7 +9,9 @@ var connection = mysql.createConnection({
 });
 connection.connect(function (err) {
   if (err) throw err;
-  console.log(">=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<\n>=<=> WELCOME TO EMPLOEE TRACKER <=>=<\n>=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<");
+  console.log(
+    ">=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<\n>=<=> WELCOME TO EMPLOEE TRACKER <=>=<\n>=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<=>=<"
+  );
   start();
 });
 
@@ -24,12 +26,12 @@ function start() {
           "ADD employee",
           "VIEW departments, roles, and employees",
           "UPDATE employee roles",
-          "EXIT",
+          "EXIT"
         ],
       },
     ])
-    .then((answers) => {
-      switch (answers) {
+    .then((answer) => {
+      switch (answer.choice) {
         case "ADD employee":
           return add();
 
@@ -41,17 +43,17 @@ function start() {
 
         default:
           console.log("^_^ BYE BYE ^_^");
-          connection.end();
+          return connection.end();
       }
     });
 }
 
 function add() {
-  inquirer.propmpt([
+  inquirer.prompt([
     {
       type: "input",
       name: "empFirstName",
-      message: "What is your employee's first name?",
+      message: "What is your employee's first name?"
     },
     {
       type: "input",
@@ -68,13 +70,15 @@ function add() {
         "Front End Engineer",
         "Back End Engineer",
         "Administrative Lead",
-        "Administrative Assistant",
+        "Administrative Assistant"
       ],
     },
     //===Don't need to enter department. The role will already have that===
-  ]);//<==Need .then here?
-  console.log(">=<=> EMPLOYEE ADDED <=>=<");
-  start();
+  ]).then((answer) => {
+    console.log(answer);
+    console.log(">=<=> EMPLOYEE ADDED <=>=<");
+    start(); 
+  })
 }
 //===CHECK ACT 12-13 FOR HELP===
 
