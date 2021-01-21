@@ -5,7 +5,7 @@ var connection = mysql.createConnection({
   port: 3306,
   user: "root",
   password: "password",
-  database: "top_songsDB",
+  database: "empTrackerDB",
 });
 connection.connect(function (err) {
   if (err) throw err;
@@ -21,7 +21,7 @@ function start() {
         name: "choice",
         message: "What would you like to do?",
         choices: [
-          "ADD departments, roles, and employees",
+          "ADD employee",
           "VIEW departments, roles, and employees",
           "UPDATE employee roles",
           "EXIT",
@@ -31,14 +31,14 @@ function start() {
     .then((answers) => {
       switch (answers) {
         case "ADD employee":
-          add();
-          break;
+          return add();
+
         case "VIEW departments, roles, and employees":
-          view();
-          break;
+          return view();
+
         case "UPDATE employee roles":
-          update();
-          break;
+          return update();
+
         default:
           console.log("^_^ BYE BYE ^_^");
           connection.end();
